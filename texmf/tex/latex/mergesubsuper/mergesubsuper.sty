@@ -1,0 +1,24 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{mergesubsuper}[2021/03/19 v0.1.0 Composable sub- and superscripts]
+
+% exported commands
+\newcommand{\merge}[1]{#1\mss@scan{}{}}
+\newcommand{\mergewith}[2]{#1\edef\mss@delim{#2}\mss@scan{}{}}
+
+% internal
+\def\mss@delim{}
+
+\def\mss@scan#1#2{%
+    \edef\mss@thesub{#1}%
+    \edef\mss@thesup{#2}%
+    \@ifnextchar_{\mss@mergesubs}{%
+        \@ifnextchar^{\mss@mergesups}{%
+            _{\mss@thesub}^{\mss@thesup}%
+        }%
+    }%
+}
+\def\mss@mergesubs_#1{\mss@scan{\mss@join{\mss@thesub}{\mss@delim}{#1}}{\mss@thesup}}
+\def\mss@mergesups^#1{\mss@scan{\mss@thesub}{\mss@join{\mss@thesup}{\mss@delim}{#1}}}
+\def\mss@join#1#2#3{\if\relax\expandafter\detokenize\expandafter{#1}\relax\else#1#2\fi#3}
+
+\endinput

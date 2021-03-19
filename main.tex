@@ -1,0 +1,22 @@
+\documentclass[varwidth]{standalone}
+
+\usepackage{mergesubsuper}
+
+\newcommand{\ab}[1]{#1^{\mathrm{ab}}}
+\renewcommand{\c}[1]{#1^{c}}
+
+\newcommand{\A}{\merge{A}}
+
+\begin{document}
+    $ A = \A $
+    
+    $ \c{A} = \c{\A} $
+    
+    $ \hat A^{\mathrm{ab}c} = \c{\ab{\hat\A}} $
+    
+    $ A^{\mathrm{ab}46}_{35}7 = \ab{\A}_3^4_5^67 $
+    
+    $ B^{2\mathrm{ab}4c}_3 = \c{\ab{\merge{B}^2_3}^4} $
+    
+    $ B^{2,\mathrm{ab},4,c}_{3,5} = \c{\ab{\mergewith{B}{,}^2_3}^4}_5 $
+\end{document}
